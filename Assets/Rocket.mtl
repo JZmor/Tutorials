@@ -1,0 +1,9 @@
+newmtl Saturn_V
+Kd 1 1 1
+d 1
+
+newmtl USA
+map_Kd USA.png
+Kd 1 1 1
+d 1
+

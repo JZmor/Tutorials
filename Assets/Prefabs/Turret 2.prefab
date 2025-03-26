@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 64
   m_IsActive: 1
 --- !u!4 &192079417354219259
 Transform:
@@ -27,8 +27,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6710881427539792499}
   - {fileID: 8438715891627251901}
@@ -46,12 +46,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffaf0a6e27306c74ba73b3a91d258a29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 30
-  fireRate: 0.5
+  range: 20
+  fireRate: 1.5
+  useLaser: 0
+  damageOverTime: 30
+  slowAmount: 0.5
+  lineRenderer: {fileID: 0}
+  impactEffect: {fileID: 0}
+  impactLight: {fileID: 0}
   enemyTag: Enemy
   turnSpeed: 10
   partToRotate: {fileID: 8438715891627251901}
-  bulletPrefab: {fileID: 1085599565584271330, guid: 36a4c3371c0e96a4e908c835657fab01, type: 3}
+  bulletPrefab: {fileID: 1085599565584271330, guid: cd5728319e8b08d48aa97e03930bd1a3, type: 3}
   firePoint: {fileID: 7962398282635546105}
 --- !u!1 &4683598059028995333
 GameObject:
@@ -67,7 +73,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 64
   m_IsActive: 1
 --- !u!4 &7962398282635546105
 Transform:
@@ -100,7 +106,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 64
   m_IsActive: 1
 --- !u!4 &6710881427539792499
 Transform:
@@ -148,7 +154,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 40dcdd91c5ef3f04fa6921b87067f98c, type: 2}
+  - {fileID: 2100000, guid: 93a0462d76f0b284c9a8c18ec2c6e86a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -186,7 +192,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 64
   m_IsActive: 1
 --- !u!4 &949334214488469592
 Transform:
@@ -234,7 +240,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 40dcdd91c5ef3f04fa6921b87067f98c, type: 2}
+  - {fileID: 2100000, guid: 93a0462d76f0b284c9a8c18ec2c6e86a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -270,7 +276,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 64
   m_IsActive: 1
 --- !u!4 &8438715891627251901
 Transform:

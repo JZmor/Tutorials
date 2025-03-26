@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
+    public TurretBlueprint standardTurret;
+    public TurretBlueprint missileLauncher;
+    public TurretBlueprint laserBeamer;
     BuildManager buildManager;
 
     void Start()
@@ -9,13 +12,18 @@ public class Shop : MonoBehaviour
         buildManager = BuildManager.instance;
     }
 
-    public void PurchaseStandardTurret()
+    public void SelectStandardTurret()
     {
-        buildManager.SetTurretToBuild(buildManager.standardTurretPrefab);
+        buildManager.SelectTurretToBuild(standardTurret);
     }
     
-    public void PurchaseMissileLauncher()
+    public void SelectMissileLauncher()
     {
-        buildManager.SetTurretToBuild(buildManager.missileLauncherPrefab);
+        buildManager.SelectTurretToBuild(missileLauncher);
+    }
+    
+    public void SelectLaserBeamer()
+    {
+        buildManager.SelectTurretToBuild(laserBeamer);
     }
 }

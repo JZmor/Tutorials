@@ -14,18 +14,44 @@ public class BuildManager : MonoBehaviour
         instance = this;
     }
 
-    public GameObject standardTurretPrefab;
-    public GameObject missileLauncherPrefab;
+    public GameObject BuildEffect;
 
-    private GameObject turretToBuild;
+    private TurretBlueprint turretToBuild;
+    private Node selectedNode;
+
+    public NodeUI nodeUI;
     
-    public GameObject GetTurretToBuild()
+    public bool CanBuild { get { return turretToBuild != null; } }
+    public bool HasMoney { get { return PlayerStats.Money >= turretToBuild.cost; } }
+
+    public void SelectNode(Node node)
     {
-        return turretToBuild;
+        if (selectedNode == node)
+        {
+            DeselectNode();
+            return;
+        }
+
+        selectedNode = node;
+        turretToBuild = null;
+        
+        nodeUI.SetTarget(node);
     }
 
-    public void SetTurretToBuild(GameObject turret)
+    public void DeselectNode()
     {
-        this.turretToBuild = turret;
+        selectedNode = null;
+        nodeUI.Hide();
+    }
+
+    public void SelectTurretToBuild(TurretBlueprint turret)
+    {
+        turretToBuild = turret;
+        DeselectNode();
+    }
+
+    public TurretBlueprint GetTurretToBuild()
+    {
+        return turretToBuild;
     }
 }
