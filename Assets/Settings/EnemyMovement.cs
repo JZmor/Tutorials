@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.AI;
 
 [RequireComponent(typeof(Enemy))]
 public class EnemyMovement : MonoBehaviour
@@ -17,15 +18,18 @@ public class EnemyMovement : MonoBehaviour
     
     void Update()
     {
-        Vector3 dir = target.position - transform.position;
-        transform.Translate(dir.normalized * enemy.speed * Time.deltaTime, Space.World);
+        //Vector3 dir = target.position - transform.position;
+        //transform.Translate(dir.normalized * enemy.speed * Time.deltaTime, Space.World);
+        NavMeshAgent agent = GetComponent<NavMeshAgent>();
+        agent.destination = target.position;
 
-        if (Vector3.Distance(transform.position, target.position) <= 0.2f)
+        if (Vector3.Distance(transform.position, target.position) <= 0.5f)
         {
             GetNextWaypoint();
         }
 
-        enemy.speed = enemy.startSpeed;
+        agent.speed = enemy.startSpeed;
+        //enemy.speed = enemy.startSpeed;
     }
 
     void GetNextWaypoint()
@@ -43,6 +47,7 @@ public class EnemyMovement : MonoBehaviour
     void EndPath()
     {
         PlayerStats.lives--;
+        WaveSpawner.EnemiesAlive--;
         Destroy(gameObject);
     }
 }

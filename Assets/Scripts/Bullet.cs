@@ -1,4 +1,5 @@
 using UnityEngine;
+using Unity.Cinemachine;
 
 public class Bullet : MonoBehaviour
 {
@@ -55,6 +56,7 @@ public class Bullet : MonoBehaviour
     void Explode()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
+        GetComponent<CinemachineImpulseSource>().GenerateImpulse();
         foreach (Collider collider in colliders)
         {
             if (collider.CompareTag("Enemy"))

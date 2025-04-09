@@ -1,13 +1,20 @@
 using UnityEngine;
+using Unity.Cinemachine;
 
 public class CameraController : MonoBehaviour
 {
-    private bool doMovement = true;
     public float panSpeed = 30f;
     public float panBorderThickness = 10f;
     public float scrollSpeed = 5f;
     public float minY = 10f;
     public float maxY = 80f;
+    public CinemachineCamera CMCamera;
+
+    void Start()
+    {
+        CMCamera = CMCamera.GetComponent<CinemachineCamera>();
+    }
+
     void Update()
     {
         if (GameManager.gameIsOver)
@@ -16,30 +23,24 @@ public class CameraController : MonoBehaviour
             return;
         }
 
-        if (Input.GetKey(KeyCode.Escape))
-        {
-            doMovement = !doMovement;
-        }
-
-        if (doMovement == false)
-        {
-            return;
-        }
-
         if (Input.GetKey("w") || Input.mousePosition.y >= Screen.height - panBorderThickness)
         {
+            CMCamera.transform.Translate(Vector3.forward * panSpeed * Time.deltaTime, Space.World);
             transform.Translate(Vector3.forward * panSpeed * Time.deltaTime, Space.World);
         }
         if (Input.GetKey("s") || Input.mousePosition.y <= panBorderThickness)
         {
+            CMCamera.transform.Translate(Vector3.back * panSpeed * Time.deltaTime, Space.World);
             transform.Translate(Vector3.back * panSpeed * Time.deltaTime, Space.World);
         }
         if (Input.GetKey("d") || Input.mousePosition.x >= Screen.width - panBorderThickness)
         {
+            CMCamera.transform.Translate(Vector3.right * panSpeed * Time.deltaTime, Space.World);
             transform.Translate(Vector3.right * panSpeed * Time.deltaTime, Space.World);
         }
         if (Input.GetKey("a") || Input.mousePosition.x <= panBorderThickness)
         {
+            CMCamera.transform.Translate(Vector3.left * panSpeed * Time.deltaTime, Space.World);
             transform.Translate(Vector3.left * panSpeed * Time.deltaTime, Space.World);
         }
         
@@ -49,6 +50,7 @@ public class CameraController : MonoBehaviour
         pos.y -= scroll * 1000 * scrollSpeed * Time.deltaTime;
         pos.y = Mathf.Clamp(pos.y, minY, maxY);
         
+        CMCamera.transform.position = pos;
         transform.position = pos;
     }
 }
